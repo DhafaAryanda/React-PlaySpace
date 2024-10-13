@@ -5,7 +5,7 @@ import Navbar from "./components/navbar";
 import CategoryCard from "./components/category-card";
 import ProductCard from "./components/product-card";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Navbar />
