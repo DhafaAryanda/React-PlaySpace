@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Navbar from "./components/navbar";
-import CategoryCard from "./components/category-card";
-import ProductCard from "./components/product-card";
+import Navbar from "../components/navbar";
+import CategoryCard from "../components/category-card";
+import ProductCard from "../components/product-card";
 
 export default function HomePage() {
   return (
     <>
-      <Navbar />
       <header className="w-full pt-[74px] pb-[34px] bg-[url('/assets/images/backgrounds/hero-image.png')] bg-cover bg-no-repeat bg-center relative z-0">
         <div className="container max-w-[1130px] mx-auto flex flex-col items-center justify-center gap-[34px] z-10">
           <div className="flex flex-col gap-2 text-center w-fit mt-20 z-10">
