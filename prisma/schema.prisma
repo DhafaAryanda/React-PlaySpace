@@ -43,9 +43,7 @@ model users {
   id String @id @default(cuid())
   name String
   email String @unique
-  nip String
-  npm String
-  password String?
+  password String
   role Role
   phoneNumber String 
   emailVerifiedAt DateTime? 

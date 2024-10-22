@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Navbar() {
@@ -6,7 +7,12 @@ export default function Navbar() {
       <div className="container max-w-[1130px] mx-auto flex items-center justify-between h-[74px]">
         <div className="flex items-center gap-[26px]">
           <a href="index.html" className="flex w-[154px] shrink-0 items-center">
-            <img src="assets/images/logos/logo.svg" alt="logo" />
+            <Image
+              width={154}
+              height={40}
+              src="assets/images/logos/logo.svg"
+              alt="logo"
+            />
           </a>
           <ul className="flex gap-6 items-center">
             <li className="text-playspace-grey hover:text-playspace-light-grey transition-all duration-300">

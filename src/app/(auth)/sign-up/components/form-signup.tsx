@@ -2,6 +2,17 @@
 import Link from "next/link";
 import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
+import { signUpUser } from "../lib/actions";
+
+interface ActionResult {
+  errorTitle: string | null;
+  errorDesc: string[] | null;
+}
+
+const initialState: ActionResult = {
+  errorTitle: null,
+  errorDesc: [],
+};
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -18,8 +29,24 @@ function SubmitButton() {
 }
 
 export default function FormSignUp() {
+  const [state, formAction] = useFormState(signUpUser, initialState);
+
   return (
-    <form className="bg-[#181818] text-white w-[500px] flex flex-col rounded-[20px] gap-5 p-5">
+    <form
+      action={formAction}
+      className="bg-[#181818] text-white w-[500px] flex flex-col rounded-[20px] gap-5 p-5"
+    >
+      {state.errorTitle !== null && (
+        <div className=" bg-red-500 w-full p-4 rounded-lg text-white ">
+          <div className="font-bold mb-4">{state.errorTitle}</div>
+          <ul className="list-disc list-inside">
+            {state.errorDesc?.map((value, index) => (
+              <li key={index + value}>{value}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div className="flex gap-5">
         <div className="flex flex-col gap-2">
           <label htmlFor="name" className="font-medium">
