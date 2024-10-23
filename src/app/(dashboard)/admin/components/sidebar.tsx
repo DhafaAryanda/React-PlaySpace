@@ -25,10 +25,12 @@ export default function Sidebar() {
           variant={"ghost"}
           asChild
           className={`w-full justify-start ${
-            pathname === "/dashboard" ? "bg-accent text-accent-foreground" : ""
+            pathname === "/admin/dashboard"
+              ? "bg-accent text-accent-foreground"
+              : ""
           }`}
         >
-          <Link href={"/dashboard"}>
+          <Link href={"/admin/dashboard"}>
             <House className="mr-2 w-4 h-4" /> Dashboard
           </Link>
         </Button>
@@ -39,12 +41,12 @@ export default function Sidebar() {
           variant={"ghost"}
           asChild
           className={`w-full justify-start ${
-            pathname === "/dashboard/manajemen/sewa"
+            pathname === "/admin/dashboard/manajemen/sewa"
               ? "bg-accent text-accent-foreground"
               : ""
           }`}
         >
-          <Link href={"/dashboard/manajemen/sewa"}>
+          <Link href={"/admin/dashboard/manajemen/sewa"}>
             <Map className="mr-2 w-4 h-4 ml-1" /> Manajemen Penyewaan
           </Link>
         </Button>
@@ -52,12 +54,12 @@ export default function Sidebar() {
           variant={"ghost"}
           asChild
           className={`w-full justify-start ${
-            pathname === "/dashboard/manajemen/konten"
+            pathname === "/admin/dashboard/manajemen/konten"
               ? "bg-accent text-accent-foreground"
               : ""
           }`}
         >
-          <Link href={"/dashboard/manajemen/konten"}>
+          <Link href={"/admin/dashboard/manajemen/konten"}>
             <FilePenLine className="mr-2 w-4 h-4" /> Manajemen Fasilitas
           </Link>
         </Button>
@@ -65,12 +67,12 @@ export default function Sidebar() {
           variant={"ghost"}
           asChild
           className={`w-full justify-start ${
-            pathname === "/dashboard/manajemen/riwayat-transaksi"
+            pathname === "/admin/dashboard/manajemen/riwayat-transaksi"
               ? "bg-accent text-accent-foreground"
               : ""
           }`}
         >
-          <Link href={"/dashboard/manajemen/riwayat-transaksi"}>
+          <Link href={"/admin/dashboard/manajemen/riwayat-transaksi"}>
             <Archive className="mr-2 w-4 h-4" /> Riwayat Transaksi
           </Link>
         </Button>
@@ -78,12 +80,12 @@ export default function Sidebar() {
           variant={"ghost"}
           asChild
           className={`w-full justify-start ${
-            pathname === "/dashboard/manajemen/buat-transaksi"
+            pathname === "/admin/dashboard/manajemen/buat-transaksi"
               ? "bg-accent text-accent-foreground"
               : ""
           }`}
         >
-          <Link href={"/dashboard/manajemen/buat-transaksi"}>
+          <Link href={"/admin/dashboard/manajemen/buat-transaksi"}>
             <CalendarPlus className="mr-2 w-4 h-4" /> Buat Sewa
           </Link>
         </Button>
@@ -91,12 +93,12 @@ export default function Sidebar() {
           variant={"ghost"}
           asChild
           className={`w-full justify-start ${
-            pathname === "/dashboard/akun"
+            pathname === "/admin/dashboard/akun"
               ? "bg-accent text-accent-foreground"
               : ""
           }`}
         >
-          <Link href={"/dashboard/akun"}>
+          <Link href={"/admin/dashboard/akun"}>
             <User className="mr-2 w-4 h-4" /> Akun Pengguna
           </Link>
         </Button>
@@ -108,12 +110,12 @@ export default function Sidebar() {
           variant={"ghost"}
           asChild
           className={`w-full justify-start ${
-            pathname === "/dashboard/profile"
+            pathname === "/admin/dashboard/profile"
               ? "bg-accent text-accent-foreground"
               : ""
           }`}
         >
-          <Link href={"/dashboard/profile"}>
+          <Link href={"/admin/dashboard/profile"}>
             <User className="mr-2 w-4 h-4" /> Profile
           </Link>
         </Button>

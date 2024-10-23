@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
-import "../globals.css";
+import "../../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import AdminNavbar from "./components/navbar";
 import { Button } from "@/components/ui/button";
@@ -47,7 +47,7 @@ export default function RootLayout({
               <Image
                 width={154}
                 height={40}
-                src="../../assets/images/logos/logo.svg"
+                src="../../../assets/images/logos/logo.svg"
                 alt="logo"
               />
             </div>
