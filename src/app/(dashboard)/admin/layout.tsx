@@ -55,14 +55,14 @@ export default function RootLayout({
                 <Image
                   width={154}
                   height={40}
-                  src="../../../assets/images/logos/logo.svg"
+                  src="../../../../assets/images/logos/logo.svg"
                   alt="logo"
                   className="block dark:hidden"
                 />
                 <Image
                   width={154}
                   height={40}
-                  src="../../../assets/images/logos/logo-dark.svg"
+                  src="../../../../assets/images/logos/logo-dark.svg"
                   alt="logo"
                   className="hidden dark:block"
                 />
