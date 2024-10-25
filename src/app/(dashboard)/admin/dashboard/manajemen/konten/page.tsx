@@ -26,35 +26,37 @@ export default function page() {
 
           <form id="submitForm" action="" method="POST">
             <section>
-              <div className="bg-[#181818] rounded-lg border border-gray-700 shadow-md mb-3">
+              <div className="bg-white rounded-lg border border-gray-300 shadow-md mb-3 dark:bg-[#181818] dark:border-gray-700">
                 <div>
-                  <p className="mt-8 mx-10 font-bold">Informasi Fasilitas</p>
+                  <p className="mt-8 mx-10 font-bold text-black dark:text-white">
+                    Informasi Fasilitas
+                  </p>
                 </div>
 
-                <div className="mt-4 mb-4 mx-10 ">
+                <div className="mt-4 mb-4 mx-10">
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold ">
-                      <p>Nama</p>
-                      <p className="after:content-['*'] after:text-red-500">
+                    <div className="w-[250px] mt-5 font-semibold">
+                      <p className="text-black dark:text-white">Nama</p>
+                      <p className="after:content-['*'] after:text-red-500 dark:after:text-red-500">
                         Fasilitas
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 text-gray-600 dark:text-playspace-grey">
                         Masukkan nama fasilitas
                       </p>
                     </div>
 
                     <div className="flex items-center">
                       <div className="flex w-[600px]">
-                        <Input />
+                        <Input className="border border-gray-300 dark:border-gray-700" />
                       </div>
                     </div>
                   </div>
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold">
-                      <p className="after:content-['*'] after:text-red-500">
+                    <div className="w-[250px] mt-5 font-semibold">
+                      <p className="after:content-['*'] after:text-red-500 dark:after:text-red-500">
                         Kategori
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 text-gray-600 dark:text-playspace-grey">
                         Pilih kategori fasilitas
                       </p>
                     </div>
@@ -79,11 +81,11 @@ export default function page() {
                   </div>
 
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold">
-                      <p className="after:content-['*'] after:text-red-500">
+                    <div className="w-[250px] mt-5 font-semibold">
+                      <p className="after:content-['*'] after:text-red-500 dark:after:text-red-500">
                         Jadwal Tersedia
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 text-gray-600 dark:text-playspace-grey">
                         Pilih jadwal tersedia fasilitas
                       </p>
                     </div>
@@ -97,10 +99,10 @@ export default function page() {
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="light">
-                                Lapangan Outdoor
+                                Jam Tersedia 1
                               </SelectItem>
                               <SelectItem value="dark">
-                                Lapangan Indoor
+                                Jam Tersedia 2
                               </SelectItem>
                             </SelectContent>
                           </Select>
@@ -113,16 +115,18 @@ export default function page() {
             </section>
 
             <section>
-              <div className="bg-[#181818] rounded-lg border border-gray-700 shadow-md mb-3">
+              <div className="bg-white border-gray-300 dark:bg-[#181818] rounded-lg border dark:border-gray-700 shadow-md mb-3">
                 <div>
-                  <p className="mt-8 mx-10 font-bold">Detail Fasilitas</p>
+                  <p className="mt-8 mx-10 font-bold text-black dark:text-white">
+                    Detail Fasilitas
+                  </p>
                 </div>
                 <div className="mt-4 mb-4 mx-10 ">
                   <div className="flex py-6 mx-2">
                     <div className="mt-5 w-[240px] font-semibold">
-                      <p>Foto</p>
-                      <p>Fasilitas</p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="text-black dark:text-white">Foto</p>
+                      <p className="text-black dark:text-white">Fasilitas</p>
+                      <p className="font-normal text-xs mt-2 text-gray-600 dark:text-playspace-grey">
                         Unggah Foto Fasilitas
                       </p>
                     </div>
@@ -369,11 +373,11 @@ export default function page() {
 
                   <div className="flex py-6 mx-2">
                     <div className="mt-5 w-[250px] font-semibold">
-                      <p>Deskripsi</p>
+                      <p className="text-black dark:text-white">Deskripsi</p>
                       <p className="after:content-['*'] after:text-red-500">
                         Fasilitas
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 text-gray-600 dark:text-playspace-grey">
                         Tuliskan deskripsi fasilitas
                       </p>
                     </div>
@@ -383,19 +387,22 @@ export default function page() {
                 </div>
               </div>
             </section>
+
             <section>
-              <div className="bg-[#181818] rounded-lg border border-gray-700 shadow-md mb-3">
+              <div className="dark:bg-[#181818] bg-white rounded-lg border dark:border-gray-700 border-gray-300 shadow-md mb-3">
                 <div>
-                  <p className="mt-8 mx-10 font-bold">Harga Sewa</p>
+                  <p className="mt-8 mx-10 font-bold dark:text-white text-gray-900">
+                    Harga Sewa
+                  </p>
                 </div>
                 <div className="mt-4 mb-4 mx-10 ">
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold">
+                    <div className="w-[250px] mt-5 font-semibold dark:text-white text-gray-900">
                       <p>Harga Umum</p>
                       <p className="after:content-['*'] after:text-red-500">
                         Per Jam
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 dark:text-playspace-grey text-gray-500">
                         Masukkan harga sewa 1 jam
                       </p>
                     </div>
@@ -403,7 +410,7 @@ export default function page() {
                     <div className="flex items-center">
                       <div className="flex w-[600px]">
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-playspace-light-grey border border-r-0 border-gray-300 rounded-l-md">
-                          <div className="text-playspace-dark-grey/80 font-bold">
+                          <div className="dark:text-playspace-dark-grey/80 font-bold text-gray-900">
                             Rp
                           </div>
                         </span>
@@ -415,12 +422,12 @@ export default function page() {
 
                 <div className="mt-4 mb-4 mx-10 ">
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold">
+                    <div className="w-[250px] mt-5 font-semibold dark:text-white text-gray-900">
                       <p>Harga Umum</p>
                       <p className="after:content-['*'] after:text-red-500">
                         Per Hari
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 dark:text-playspace-grey text-gray-500">
                         Masukkan harga sewa 1 Hari &#40;7 jam&#41;
                       </p>
                     </div>
@@ -428,7 +435,7 @@ export default function page() {
                     <div className="flex items-center">
                       <div className="flex w-[600px]">
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-playspace-light-grey border border-r-0 border-gray-300 rounded-l-md">
-                          <div className="text-playspace-dark-grey/80 font-bold">
+                          <div className="dark:text-playspace-dark-grey/80 font-bold text-gray-900">
                             Rp
                           </div>
                         </span>
@@ -440,12 +447,12 @@ export default function page() {
 
                 <div className="mt-4 mb-4 mx-10 ">
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold">
+                    <div className="w-[250px] mt-5 font-semibold dark:text-white text-gray-900">
                       <p>Harga Staff</p>
                       <p className="after:content-['*'] after:text-red-500">
                         Per Jam
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 dark:text-playspace-grey text-gray-500">
                         Masukkan harga sewa 1 jam
                       </p>
                     </div>
@@ -453,7 +460,7 @@ export default function page() {
                     <div className="flex items-center">
                       <div className="flex w-[600px]">
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-playspace-light-grey border border-r-0 border-gray-300 rounded-l-md">
-                          <div className="text-playspace-dark-grey/80 font-bold">
+                          <div className="dark:text-playspace-dark-grey/80 font-bold text-gray-900">
                             Rp
                           </div>
                         </span>
@@ -465,12 +472,12 @@ export default function page() {
 
                 <div className="mt-4 mb-4 mx-10 ">
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold">
+                    <div className="w-[250px] mt-5 font-semibold dark:text-white text-gray-900">
                       <p>Harga Staff</p>
                       <p className="after:content-['*'] after:text-red-500">
                         Per Hari
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 dark:text-playspace-grey text-gray-500">
                         Masukkan harga sewa 1 Hari &#40;7 jam&#41;
                       </p>
                     </div>
@@ -478,7 +485,7 @@ export default function page() {
                     <div className="flex items-center">
                       <div className="flex w-[600px]">
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-playspace-light-grey border border-r-0 border-gray-300 rounded-l-md">
-                          <div className="text-playspace-dark-grey/80 font-bold">
+                          <div className="dark:text-playspace-dark-grey/80 font-bold text-gray-900">
                             Rp
                           </div>
                         </span>
@@ -487,14 +494,15 @@ export default function page() {
                     </div>
                   </div>
                 </div>
+
                 <div className="mt-4 mb-4 mx-10 ">
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold">
+                    <div className="w-[250px] mt-5 font-semibold dark:text-white text-gray-900">
                       <p>Harga Mahasiswa</p>
                       <p className="after:content-['*'] after:text-red-500">
                         Per Jam
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 dark:text-playspace-grey text-gray-500">
                         Masukkan harga sewa 1 jam
                       </p>
                     </div>
@@ -502,7 +510,7 @@ export default function page() {
                     <div className="flex items-center">
                       <div className="flex w-[600px]">
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-playspace-light-grey border border-r-0 border-gray-300 rounded-l-md">
-                          <div className="text-playspace-dark-grey/80 font-bold">
+                          <div className="dark:text-playspace-dark-grey/80 font-bold text-gray-900">
                             Rp
                           </div>
                         </span>
@@ -514,12 +522,12 @@ export default function page() {
 
                 <div className="mt-4 mb-4 mx-10 ">
                   <div className="flex py-3 mx-2">
-                    <div className="w-[250px] mt-5  font-semibold">
+                    <div className="w-[250px] mt-5 font-semibold dark:text-white text-gray-900">
                       <p>Harga Mahasiswa</p>
                       <p className="after:content-['*'] after:text-red-500">
                         Per Hari
                       </p>
-                      <p className="font-normal text-xs mt-2 text-playspace-grey">
+                      <p className="font-normal text-xs mt-2 dark:text-playspace-grey text-gray-500">
                         Masukkan harga sewa 1 Hari &#40;7 jam&#41;
                       </p>
                     </div>
@@ -527,7 +535,7 @@ export default function page() {
                     <div className="flex items-center">
                       <div className="flex w-[600px]">
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-playspace-light-grey border border-r-0 border-gray-300 rounded-l-md">
-                          <div className="text-playspace-dark-grey/80 font-bold">
+                          <div className="dark:text-playspace-dark-grey/80 font-bold text-gray-900">
                             Rp
                           </div>
                         </span>
@@ -538,19 +546,22 @@ export default function page() {
                 </div>
               </div>
             </section>
+
             <section>
-              <div className="bg-[#181818] rounded-lg border border-gray-700 shadow-md mb-3">
+              <div className="dark:bg-[#181818] bg-white rounded-lg border dark:border-gray-700 border-gray-300 shadow-md mb-3">
                 <div>
-                  <p className="mt-8 mx-10 font-bold">Pengelolaan Fasilitas</p>
+                  <p className="mt-8 mx-10 font-bold dark:text-white text-gray-900">
+                    Pengelolaan Fasilitas
+                  </p>
                 </div>
                 <div className="lg:col-span-2 mt-8 mb-4 mx-10 ">
                   <div className="grid gap-4 gap-y-3 text-sm grid-cols-1 md:grid-cols-5">
                     <div className="md:col-span-2 mb-5">
-                      <label className="font-medium after:content-['*'] after:text-red-500">
+                      <label className="font-medium dark:text-white text-gray-900 after:content-['*'] after:text-red-500">
                         Tampilkan
                       </label>
                       <Select>
-                        <SelectTrigger className="">
+                        <SelectTrigger>
                           <SelectValue placeholder="Pilih tampilkan/sembunyikan" />
                         </SelectTrigger>
                         <SelectContent>
@@ -559,7 +570,7 @@ export default function page() {
                         </SelectContent>
                       </Select>
 
-                      <p className="text-xs mt-2 text-playspace-grey">
+                      <p className="text-xs mt-2 text-playspace-grey dark:text-gray-500">
                         Pilih kategori fasilitas
                       </p>
                     </div>
@@ -567,6 +578,7 @@ export default function page() {
                 </div>
               </div>
             </section>
+
             <div className="md:col-span-5 text-right">
               <div className="inline-flex items-end">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

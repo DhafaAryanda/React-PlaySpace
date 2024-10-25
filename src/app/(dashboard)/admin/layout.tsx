@@ -16,6 +16,8 @@ import {
 import Image from "next/image";
 import ButtonLogout from "./components/button-logout";
 import Sidebar from "./components/sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -39,26 +41,42 @@ export default function RootLayout({
       <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
 
       <body
-        className={`${inter.className}  bg-playspace-black font-poppins text-white `}
+        className={`${inter.className}   bg-white dark:bg-playspace-black font-poppins text-black dark:text-white `}
       >
-        <section>
-          <nav className="borber-b border-muted py-5 px-10 ">
-            <div className="flex flex-row items-center justify-between">
-              <Image
-                width={154}
-                height={40}
-                src="../../../assets/images/logos/logo.svg"
-                alt="logo"
-              />
-            </div>
-          </nav>
-          <section className="flex flex-row gap-5 items-start flex-nowrap">
-            <Sidebar />
-            <section className="grow mr-5 mt-5 h-[87vh] overflow-y-auto">
-              {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <section>
+            <nav className="borber-b border-muted py-5 px-10 ">
+              <div className="flex flex-row items-center justify-between">
+                <Image
+                  width={154}
+                  height={40}
+                  src="../../../assets/images/logos/logo.svg"
+                  alt="logo"
+                  className="block dark:hidden"
+                />
+                <Image
+                  width={154}
+                  height={40}
+                  src="../../../assets/images/logos/logo-dark.svg"
+                  alt="logo"
+                  className="hidden dark:block"
+                />
+                <ModeToggle />
+              </div>
+            </nav>
+            <section className="flex flex-row gap-5 items-start flex-nowrap">
+              <Sidebar />
+              <section className="grow mr-5 mt-5 h-[87vh] overflow-y-auto">
+                {children}
+              </section>
             </section>
           </section>
-        </section>
+        </ThemeProvider>
       </body>
     </html>
   );

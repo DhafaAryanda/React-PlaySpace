@@ -25,10 +25,8 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
 
-      <body
-        className={`${inter.className}  bg-playspace-black font-poppins text-white pt-[74px] pb-[34px]`}
-      >
-        <Navbar />
+      <body className={`${inter.className}  bg-black font-poppins text-white`}>
+        {/* <Navbar /> */}
         {children}
         <Toaster />
       </body>
