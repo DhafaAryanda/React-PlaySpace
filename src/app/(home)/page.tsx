@@ -8,7 +8,7 @@ import ProductCard from "../components/product-card";
 export default function HomePage() {
   return (
     <>
-      <header className="w-full pt-[74px] pb-[34px] bg-[url('/assets/images/backgrounds/hero-image.png')] bg-cover bg-no-repeat bg-center relative z-0">
+      <header className="w-full pt-[108px] pb-[56px] bg-[url('/assets/images/backgrounds/hero-image.jpg')] bg-cover bg-no-repeat bg-center relative z-0">
         <div className="container max-w-[1130px] mx-auto flex flex-col items-center justify-center gap-[34px] z-10">
           <div className="flex flex-col gap-2 text-center w-fit mt-20 z-10">
             <h1 className="font-semibold text-[60px] leading-[130%]">
@@ -43,7 +43,7 @@ export default function HomePage() {
             </form>
           </div>
         </div>
-        <div className="w-full h-full absolute top-0 bg-gradient-to-b from-playspace-black/70 to-playspace-black z-0"></div>
+        <div className="w-full h-full absolute top-0 bg-gradient-to-b from-white/20 to-white dark:from-playspace-black/30 dark:to-playspace-black z-0"></div>
       </header>
       <section
         id="Category"
@@ -921,7 +921,7 @@ export default function HomePage() {
           </div>
         </div>
       </section> */}
-      <footer className="bg-[#181818] py-[34px]">
+      <footer className="bg-gray-100 dark:bg-[#181818] py-[34px]">
         <div className="container max-w-[1130px] mx-auto flex flex-col gap-[66px]">
           <div className="flex justify-between">
             <div className="flex flex-col justify-between">
@@ -929,7 +929,7 @@ export default function HomePage() {
                 <img src="assets/images/logos/logo.svg" alt="logo" />
               </div>
               <div className="flex flex-col gap-[10px]">
-                <p className="font-semibold text-sm">Connect with us</p>
+                <p className="font-semibold text-sm ">Connect with us</p>
                 <div className="flex items-center gap-5">
                   <a
                     href=""
@@ -980,31 +980,31 @@ export default function HomePage() {
                 <div className="flex flex-col gap-[18px]">
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     All Products
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Templates
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Ebooks
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Courses
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Fonts
                   </a>
@@ -1015,25 +1015,25 @@ export default function HomePage() {
                 <div className="flex flex-col gap-[18px]">
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     All-Access Pass
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Become an author
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Affiliate program
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Terms & Licensing
                   </a>
@@ -1044,25 +1044,25 @@ export default function HomePage() {
                 <div className="flex flex-col gap-[18px]">
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     FAQ
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Orders
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Payments
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     refunds
                   </a>
@@ -1073,19 +1073,19 @@ export default function HomePage() {
                 <div className="flex flex-col gap-[18px]">
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     About us
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Company
                   </a>
                   <a
                     href=""
-                    className="text-playspace-grey font-semibold text-xs"
+                    className="text-gray-500 dark:text-playspace-grey font-semibold text-xs"
                   >
                     Careers
                   </a>
@@ -1093,7 +1093,9 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <p className="text-[10px] text-[#595959]">© 2024, playspace LLC.</p>
+          <p className="text-[10px] text-gray-400 dark:text-[#595959]">
+            © 2024, playspace LLC.
+          </p>
         </div>
       </footer>
     </>

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ProductCard() {
   return (
-    <div className="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden">
+    <div className="product-card flex flex-col rounded-[18px] bg-white dark:bg-[#181818] shadow-md dark:shadow-none overflow-hidden">
       <a
         href="details.html"
         className="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative"
@@ -12,7 +12,7 @@ export default function ProductCard() {
           className="w-full h-full object-cover"
           alt="thumbnail"
         />
-        <p className="backdrop-blur bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10">
+        <p className="backdrop-blur bg-white/80  dark:bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10 shadow-sm dark:shadow-none">
           Rp 129,000
         </p>
       </a>
@@ -24,7 +24,7 @@ export default function ProductCard() {
           >
             SaaS Website Master Template: Streamline Your Digital Solution
           </a>
-          <p className="bg-[#2A2A2A] font-semibold text-xs text-playspace-grey rounded-[4px] p-[4px_6px] w-fit">
+          <p className="bg-gray-200 dark:bg-[#2A2A2A] font-semibold text-xs text-gray-600 dark:text-playspace-grey rounded-[4px] p-[4px_6px] w-fit">
             Template
           </p>
         </div>
@@ -36,7 +36,10 @@ export default function ProductCard() {
               alt="logo"
             />
           </div>
-          <a href="" className="font-semibold text-xs text-playspace-grey">
+          <a
+            href=""
+            className="font-semibold text-xs  text-gray-600 dark:text-playspace-grey"
+          >
             Framer
           </a>
         </div>

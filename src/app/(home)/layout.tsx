@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "../globals.css";
 import Navbar from "../components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -25,10 +26,17 @@ export default function RootLayout({
       <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
 
       <body
-        className={`${inter.className}  bg-playspace-black font-poppins text-white `}
+        className={`${inter.className}  bg-white dark:bg-playspace-black font-poppins text-black dark:text-white`}
       >
-        <Navbar />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
