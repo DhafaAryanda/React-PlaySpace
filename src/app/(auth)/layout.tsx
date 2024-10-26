@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "../globals.css";
 import Navbar from "../components/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -25,10 +26,18 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
 
-      <body className={`${inter.className}  bg-black font-poppins text-white`}>
-        {/* <Navbar /> */}
-        {children}
-        <Toaster />
+      <body
+        className={`${inter.className}  bg-white dark:bg-playspace-black font-poppins text-black dark:text-white`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
