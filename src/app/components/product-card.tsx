@@ -1,40 +1,53 @@
+import Link from "next/link";
 import React from "react";
 
-export default function ProductCard() {
+interface ProductCardProps {
+  id: string;
+  title: string;
+  category: string;
+  price: number;
+  logo: string;
+  thumbnail: string;
+}
+
+export default function ProductCard({
+  id,
+  title,
+  category,
+  price,
+  logo,
+  thumbnail,
+}: ProductCardProps) {
   return (
     <div className="product-card flex flex-col rounded-[18px] bg-white dark:bg-[#181818] shadow-md dark:shadow-none overflow-hidden">
-      <a
-        href="details.html"
+      <Link
+        href={`/product/${id}`}
         className="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative"
       >
         <img
-          src="assets/images/thumbnails/img1.png"
+          src={thumbnail}
           className="w-full h-full object-cover"
           alt="thumbnail"
         />
         <p className="backdrop-blur bg-white/80  dark:bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10 shadow-sm dark:shadow-none">
-          Rp 129,000
+          {price}
         </p>
-      </a>
+      </Link>
       <div className="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
         <div className="flex flex-col gap-1">
-          <a
-            href="details.html"
+          <Link
+            href={`/product/${id}`}
             className="font-semibold line-clamp-2 hover:line-clamp-none"
           >
-            SaaS Website Master Template: Streamline Your Digital Solution
-          </a>
+            {title}
+          </Link>
           <p className="bg-gray-200 dark:bg-[#2A2A2A] font-semibold text-xs text-gray-600 dark:text-playspace-grey rounded-[4px] p-[4px_6px] w-fit">
-            Template
+            {category}
           </p>
         </div>
         <div className="flex items-center gap-[6px]">
           <div className="w-6 h-6 flex shrink-0 items-center justify-center rounded-full overflow-hidden">
-            <img
-              src="assets/images/logos/framer.png"
-              className="w-full h-full object-cover"
-              alt="logo"
-            />
+            <img src={logo} className="w-full h-full object-cover" alt="logo" />
           </div>
           <a
             href=""

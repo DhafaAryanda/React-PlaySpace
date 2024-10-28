@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/navbar";
+import Navbar from "../../../components/navbar";
 
 export default function CheckoutPage() {
   return (
@@ -15,7 +15,7 @@ export default function CheckoutPage() {
             <div className="product-detail flex flex-col gap-3">
               <div className="thumbnail w-[412px] h-[255px] flex shrink-0 rounded-[20px] overflow-hidden">
                 <img
-                  src="assets/images/backgrounds/hero.png"
+                  src="/assets/images/backgrounds/hero.png"
                   className="w-full h-full object-cover"
                   alt="thumbnail"
                 />
@@ -33,7 +33,7 @@ export default function CheckoutPage() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full flex shrink-0 overflow-hidden">
-                      <img src="assets/images/icons/ydntkwia.svg" alt="logo" />
+                      <img src="/assets/images/icons/ydntkwia.svg" alt="logo" />
                     </div>
                     <p className="font-semibold text-playspace-grey">
                       YDNTKWIA
@@ -86,7 +86,7 @@ export default function CheckoutPage() {
                       </select>
                     </div>
                     <div className="w-6 h-6 flex shrink-0">
-                      <img src="assets/images/icons/bank.svg" alt="icon" />
+                      <img src="/assets/images/icons/bank.svg" alt="icon" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 p-[12px_20px] pl-4 w-[215px] justify-between rounded-lg bg-[#181818] hover:ring-[1px] hover:ring-[#A0A0A0] focus:ring-[1px] focus:ring-[#A0A0A0] transition-all duration-300">
@@ -110,13 +110,13 @@ export default function CheckoutPage() {
                           type="button"
                           className="w-[18px] h-[18px] flex shrink-0"
                         >
-                          <img src="assets/images/icons/copy.svg" alt="icon" />
+                          <img src="/assets/images/icons/copy.svg" alt="icon" />
                         </button>
                       </div>
                     </div>
                     <div className="w-6 h-6 flex shrink-0">
                       <img
-                        src="assets/images/icons/user-square.svg"
+                        src="/assets/images/icons/user-square.svg"
                         alt="icon"
                       />
                     </div>
@@ -144,12 +144,12 @@ export default function CheckoutPage() {
                         type="button"
                         className="w-[18px] h-[18px] flex shrink-0"
                       >
-                        <img src="assets/images/icons/copy.svg" alt="icon" />
+                        <img src="/assets/images/icons/copy.svg" alt="icon" />
                       </button>
                     </div>
                   </div>
                   <div className="w-6 h-6 flex shrink-0">
-                    <img src="assets/images/icons/card.svg" alt="icon" />
+                    <img src="/assets/images/icons/card.svg" alt="icon" />
                   </div>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export default function CheckoutPage() {
                   >
                     <p>Choose File</p>
                     <img
-                      src="assets/images/icons/document-upload.svg"
+                      src="/assets/images/icons/document-upload.svg"
                       alt="icon"
                     />
                   </button>
@@ -182,7 +182,7 @@ export default function CheckoutPage() {
                   <div className="relative rounded-lg overflow-hidden bg-[#181818] w-full h-[48px]">
                     <div className="relative file-preview z-10 w-full h-full hidden">
                       <img
-                        src="assets/images/icons/check.svg"
+                        src="/assets/images/icons/check.svg"
                         className="check-icon absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="icon"
                       />
@@ -193,7 +193,7 @@ export default function CheckoutPage() {
                       />
                     </div>
                     <img
-                      src="assets/images/icons/gallery.svg"
+                      src="/assets/images/icons/gallery.svg"
                       className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                       alt="icon"
                     />

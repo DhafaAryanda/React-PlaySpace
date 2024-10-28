@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -5,24 +7,95 @@ import Navbar from "../components/navbar";
 import CategoryCard from "../components/category-card";
 import ProductCard from "../components/product-card";
 
+const categories = [
+  {
+    title: "All Products",
+    description: "Everything in One Place",
+    icon: "assets/images/icons/badminton.svg",
+  },
+  {
+    title: "Sports",
+    description: "Gear and Equipment",
+    icon: "assets/images/icons/laptop.svg",
+  },
+  {
+    title: "Electronics",
+    description: "Latest Tech Gadgets",
+    icon: "assets/images/icons/book.svg",
+  },
+  {
+    title: "Fashion",
+    description: "Trendy Apparel",
+    icon: "assets/images/icons/hat.svg",
+  },
+  {
+    title: "Books",
+    description: "Knowledge & More",
+    icon: "assets/images/icons/pen.svg",
+  },
+];
+
+const products = [
+  {
+    id: "1",
+    title: "Lapangan Tenis USK",
+    category: "Tenis",
+    price: 120000,
+    logo: "assets/images/logos/framer.png",
+    thumbnail: "assets/images/fasilitas/lap 1 tenis-1.jpg",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
+  },
+  {
+    id: "2",
+    title: "Lapangan Badminton USK",
+    category: "Badminton",
+    price: 70000,
+    logo: "assets/images/logos/framer.png",
+    thumbnail: "assets/images/fasilitas/lap 1 badminton gelanggang-1.jpg",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
+  },
+  {
+    id: "3",
+    title: "Lapangan Basket USK",
+    category: "Basket",
+    price: 120000,
+    logo: "assets/images/logos/framer.png",
+    thumbnail: "assets/images/fasilitas/lap basket indoor gelanggang-2.jpg",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
+  },
+  {
+    id: "4",
+    title: "Stadion Mini USK",
+    category: "Stadion Mini",
+    price: 120000,
+    logo: "assets/images/logos/framer.png",
+    thumbnail: "assets/images/fasilitas/stadion mini-1.jpg",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
       <header className="w-full pt-[108px] pb-[56px] bg-[url('/assets/images/backgrounds/hero-image.jpg')] bg-cover bg-no-repeat bg-center relative z-0">
         <div className="container max-w-[1130px] mx-auto flex flex-col items-center justify-center gap-[34px] z-10">
           <div className="flex flex-col gap-2 text-center w-fit mt-20 z-10">
-            <h1 className="font-semibold text-[60px] leading-[130%]">
+            <h1 className="font-semibold text-[60px] leading-[130%] text-gray-800 dark:text-white">
               Find Your Perfect Sports Field
               <br />
               Anytime, Anywhere
             </h1>
-            <p className="text-lg text-playspace-grey">
+            <p className="text-lg text-gray-600 dark:text-playspace-grey">
               Book high-quality fields with ease and elevate your game to the
               next level.
             </p>
           </div>
           <div className="flex w-full justify-center mb-[34px] z-10">
-            <form className="group/search-bar p-[14px_18px] bg-playspace-darker-grey ring-1 ring-[#414141] hover:ring-[#888888] max-w-[560px] w-full rounded-full transition-all duration-300">
+            <form className="group/search-bar p-[14px_18px] bg-white dark:bg-playspace-darker-grey ring-1 ring-gray-300 dark:ring-[#414141] hover:ring-gray-500 dark:hover:ring-[#888888] max-w-[560px] w-full rounded-full transition-all duration-300">
               <div className="relative text-left">
                 <button className="absolute inset-y-0 left-0 flex items-center">
                   <img src="assets/images/icons/search-normal.svg" alt="icon" />
@@ -30,7 +103,7 @@ export default function HomePage() {
                 <input
                   type="text"
                   id="searchInput"
-                  className="bg-playspace-darker-grey w-full pl-[36px] focus:outline-none placeholder:text-[#595959] pr-9"
+                  className="bg-white dark:bg-playspace-darker-grey w-full pl-[36px] focus:outline-none placeholder:text-gray-400 text-gray-700 dark:text-white dark:placeholder:text-[#595959] pr-9"
                   placeholder="Type anything to search..."
                 />
                 <input
@@ -43,7 +116,7 @@ export default function HomePage() {
             </form>
           </div>
         </div>
-        <div className="w-full h-full absolute top-0 bg-gradient-to-b from-white/20 to-white dark:from-playspace-black/30 dark:to-playspace-black z-0"></div>
+        <div className="w-full h-full absolute top-0 bg-gradient-to-b from-white/10 to-white dark:from-playspace-black/30 dark:to-playspace-black z-0"></div>
       </header>
       <section
         id="Category"
@@ -51,11 +124,14 @@ export default function HomePage() {
       >
         <h2 className="font-semibold text-[32px]">Category</h2>
         <div className="flex justify-between items-center">
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
+          {categories.map((category, index) => (
+            <CategoryCard
+              key={index}
+              title={category.title}
+              description={category.description}
+              icon={category.icon}
+            />
+          ))}
         </div>
       </section>
       <section
@@ -64,869 +140,39 @@ export default function HomePage() {
       >
         <h2 className="font-semibold text-[32px]">New Product</h2>
         <div className="grid grid-cols-4 gap-[22px]">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products.map((products, index) => (
+            <ProductCard
+              key={index}
+              id={products.id}
+              title={products.title}
+              category={products.category}
+              price={products.price}
+              logo={products.logo}
+              thumbnail={products.thumbnail}
+            />
+          ))}
         </div>
       </section>
-      {/* <section id="Testimonial" className="mb-[102px] flex flex-col gap-8">
-        <div className="container max-w-[1130px] mx-auto flex justify-between items-center">
-          <h2 className="font-semibold text-[32px]">
-            Customers Are Happy <br />
-            With Our Products
-          </h2>
-          <div className="flex gap-[14px] items-center">
-            <button className="btn-prev w-10 h-10 shrink-0 rounded-full overflow-hidden rotate-180">
-              <img src="assets/images/icons/circle-arrow-r.svg" alt="icon" />
-            </button>
-            <button className="btn-next w-10 h-10 shrink-0 rounded-full overflow-hidden">
-              <img src="assets/images/icons/circle-arrow-r.svg" alt="icon" />
-            </button>
-          </div>
-        </div>
-        <div className="w-full overflow-x-hidden no-scrollbar">
-          <div className="testi-carousel" data-flickity>
-            <div className="flex w-[calc((100vw-1130px-20px)/2)] shrink-0"></div>
-            <div className="testimonial-card bg-[#181818] rounded-[20px] flex mr-5 w-[420px] min-h-[256px] shrink-0 overflow-hidden">
-              <div className="p-6 flex flex-col w-full gap-[42px] shrink-0 bg-[url('/assets/images/backgrounds/Testimonials-image.png')] bg-contain bg-no-repeat bg-top">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center ga-[6px]">
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                  </div>
-                  <p className="leading-[26px]">
-                    Using these templates has boosted my productivity
-                    significantly. Highly recommended for all designers!
-                  </p>
-                </div>
-                <div className="flex gap-[14px] items-center">
-                  <div className="w-12 h-12 flex shrink-0 rounded-full overflow-hidden">
-                    <img
-                      src="assets/images/photos/photo1.png"
-                      className="w-full h-full object-cover"
-                      alt="photo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center-center">
-                    <p className="font-semibold text-left leading-[170%] bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-                      Sarah Lopez
-                    </p>
-                    <p className="font-semibold text-left text-xs text-playspace-grey">
-                      Brand Design Consultant
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="testimonial-card bg-[#181818] rounded-[20px] flex mr-5 w-[420px] min-h-[256px] shrink-0 overflow-hidden">
-              <div className="p-6 flex flex-col w-full gap-[42px] shrink-0 bg-[url('/assets/images/backgrounds/Testimonials-image.png')] bg-contain bg-no-repeat bg-top">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center ga-[6px]">
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                  </div>
-                  <p className="leading-[26px]">
-                    Using these templates has boosted my productivity
-                    significantly. Highly recommended for all designers!
-                  </p>
-                </div>
-                <div className="flex gap-[14px] items-center">
-                  <div className="w-12 h-12 flex shrink-0 rounded-full overflow-hidden">
-                    <img
-                      src="assets/images/photos/photo1.png"
-                      className="w-full h-full object-cover"
-                      alt="photo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center-center">
-                    <p className="font-semibold text-left leading-[170%] bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-                      Sarah Lopez
-                    </p>
-                    <p className="font-semibold text-left text-xs text-playspace-grey">
-                      Brand Design Consultant
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="testimonial-card bg-[#181818] rounded-[20px] flex mr-5 w-[420px] min-h-[256px] shrink-0 overflow-hidden">
-              <div className="p-6 flex flex-col w-full gap-[42px] shrink-0 bg-[url('/assets/images/backgrounds/Testimonials-image.png')] bg-contain bg-no-repeat bg-top">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center ga-[6px]">
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                  </div>
-                  <p className="leading-[26px]">
-                    Using these templates has boosted my productivity
-                    significantly. Highly recommended for all designers!
-                  </p>
-                </div>
-                <div className="flex gap-[14px] items-center">
-                  <div className="w-12 h-12 flex shrink-0 rounded-full overflow-hidden">
-                    <img
-                      src="assets/images/photos/photo2.png"
-                      className="w-full h-full object-cover"
-                      alt="photo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center-center">
-                    <p className="font-semibold text-left leading-[170%] bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-                      Michael Chen
-                    </p>
-                    <p className="font-semibold text-left text-xs text-playspace-grey">
-                      UI/UX Designer
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="testimonial-card bg-[#181818] rounded-[20px] flex mr-5 w-[420px] min-h-[256px] shrink-0 overflow-hidden">
-              <div className="p-6 flex flex-col w-full gap-[42px] shrink-0 bg-[url('/assets/images/backgrounds/Testimonials-image.png')] bg-contain bg-no-repeat bg-top">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center ga-[6px]">
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                  </div>
-                  <p className="leading-[26px]">
-                    Using these templates has boosted my productivity
-                    significantly. Highly recommended for all designers!
-                  </p>
-                </div>
-                <div className="flex gap-[14px] items-center">
-                  <div className="w-12 h-12 flex shrink-0 rounded-full overflow-hidden">
-                    <img
-                      src="assets/images/photos/photo1.png"
-                      className="w-full h-full object-cover"
-                      alt="photo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center-center">
-                    <p className="font-semibold text-left leading-[170%] bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-                      Emily Robinson
-                    </p>
-                    <p className="font-semibold text-left text-xs text-playspace-grey">
-                      Senior Graphic Designer
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="testimonial-card bg-[#181818] rounded-[20px] flex mr-5 w-[420px] min-h-[256px] shrink-0 overflow-hidden">
-              <div className="p-6 flex flex-col w-full gap-[42px] shrink-0 bg-[url('/assets/images/backgrounds/Testimonials-image.png')] bg-contain bg-no-repeat bg-top">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center ga-[6px]">
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                    <img src="assets/images/icons/star.svg" alt="star" />
-                  </div>
-                  <p className="leading-[26px]">
-                    Using these templates has boosted my productivity
-                    significantly. Highly recommended for all designers!
-                  </p>
-                </div>
-                <div className="flex gap-[14px] items-center">
-                  <div className="w-12 h-12 flex shrink-0 rounded-full overflow-hidden">
-                    <img
-                      src="assets/images/photos/photo1.png"
-                      className="w-full h-full object-cover"
-                      alt="photo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center-center">
-                    <p className="font-semibold text-left leading-[170%] bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-                      Sarah Lopez
-                    </p>
-                    <p className="font-semibold text-left text-xs text-playspace-grey">
-                      Brand Design Consultant
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      {/* <section id="Tool" className="mb-[102px] flex flex-col gap-8">
-        <div className="container max-w-[1130px] mx-auto flex justify-between items-center">
-          <h2 className="font-semibold text-[32px]">Browse Tools</h2>
-        </div>
-        <div className="tools-logos w-full overflow-hidden flex flex-col gap-5">
-          <div className="group/slider flex flex-nowrap w-max items-center">
-            <div className="logo-container animate-[slide_50s_linear_infinite] group-hover/slider:pause-animate flex gap-5 pl-5 items-center flex-nowrap">
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/blender.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Blender</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      3D Ul Design
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Excel.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Excel</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Data Analysis
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Kotlin.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Kotlin</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Android Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Laravel.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Laravel</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Back-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Vue.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Vue</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Front-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/figma-logo.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Figma</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Ul/UX Design
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/flutter.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Flutter</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Mobile Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/golang.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Golang</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Back-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="logo-container animate-[slide_50s_linear_infinite] group-hover/slider:pause-animate flex gap-5 pl-5 items-center flex-nowrap ">
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/blender.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Blender</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      3D Ul Design
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Excel.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Excel</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Data Analysis
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Kotlin.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Kotlin</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Android Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Laravel.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Laravel</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Back-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Vue.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Vue</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Front-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/figma-logo.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Figma</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Ul/UX Design
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/flutter.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Flutter</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Mobile Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/golang.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Golang</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Back-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div className="group/slider flex flex-nowrap w-max items-center">
-            <div className="logo-container animate-[slideToR_50s_linear_infinite] group-hover/slider:pause-animate flex gap-5 pl-5 items-center flex-nowrap">
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/blender.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Blender</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      3D Ul Design
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Excel.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Excel</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Data Analysis
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Kotlin.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Kotlin</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Android Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Laravel.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Laravel</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Back-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Vue.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Vue</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Front-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/figma-logo.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Figma</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Ul/UX Design
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/flutter.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Flutter</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Mobile Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/golang.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Golang</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Back-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="logo-container animate-[slideToR_50s_linear_infinite] group-hover/slider:pause-animate flex gap-5 pl-5 items-center flex-nowrap ">
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/blender.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Blender</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      3D Ul Design
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Excel.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Excel</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Data Analysis
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Kotlin.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Kotlin</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Android Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Laravel.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Laravel</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Back-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/Vue.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Vue</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Front-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/figma-logo.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Figma</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Ul/UX Design
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/flutter.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Flutter</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Mobile Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <a
-                href=""
-                className="group tool-card w-fit h-fit p-[1px] rounded-full bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-              >
-                <div className="w-[300px] h-[100px] rounded-full p-[18px_24px] bg-img-black-gradient group-hover:[background-image:linear-gradient(#181818,#181818)] group-active:bg-img-black transition-all duration-300 flex gap-4 items-center shrink-0">
-                  <div className="w-16 h-16 overflow-hidden flex shrink-0">
-                    <img
-                      src="assets/images/logos/golang.svg"
-                      className="w-full h-full object-contain"
-                      alt="logo"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center gap-1">
-                    <p className="font-bold text-lg">Golang</p>
-                    <p className="font-semibold text-xs leading-[170%] text-playspace-grey">
-                      Back-End Development
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section> */}
+
       <footer className="bg-gray-100 dark:bg-[#181818] py-[34px]">
         <div className="container max-w-[1130px] mx-auto flex flex-col gap-[66px]">
           <div className="flex justify-between">
             <div className="flex flex-col justify-between">
               <div className="flex shrink-0">
-                <img src="assets/images/logos/logo.svg" alt="logo" />
+                <Image
+                  width={213}
+                  height={48}
+                  src="assets/images/logos/logo.svg"
+                  alt="logo"
+                  className="block dark:hidden"
+                />
+                <Image
+                  width={213}
+                  height={48}
+                  src="assets/images/logos/logo-dark.svg"
+                  alt="logo"
+                  className="hidden dark:block"
+                />
               </div>
               <div className="flex flex-col gap-[10px]">
                 <p className="font-semibold text-sm ">Connect with us</p>
