@@ -27,7 +27,7 @@ export default function Navbar() {
 
           <ul className="flex gap-6 items-center">
             <li className="text-gray-800 dark:text-playspace-grey hover:text-gray-900  dark:hover:text-playspace-light-grey transition-all duration-300">
-              <a href="index.html">Home</a>
+              <Link href="/">Home</Link>
             </li>
             <li className="text-gray-800 dark:text-playspace-grey hover:text-gray-900  dark:hover:text-playspace-light-grey transition-all duration-300 relative">
               <button

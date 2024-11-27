@@ -9,3 +9,13 @@ export const getAllFacilities = async () => {
     throw error;
   }
 };
+
+export const getFacilityById = async (id: string) => {
+  try {
+    const response = await axiosInstance.get("/facilities/" + id);
+    return response.data;
+  } catch (error) {
+    console.log("🚀 ~ getFacilityById ~ error:", error);
+    throw error;
+  }
+};

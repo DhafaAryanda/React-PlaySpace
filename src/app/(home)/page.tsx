@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import CategoryCard, { Category } from "../components/category-card";
+import CategoryCard, { CategoryProps } from "../components/category-card";
 import ProductCard, { ProductCardProps } from "../components/product-card";
 import { useEffect, useState } from "react";
-import { getAllFacilities, getCategories } from "../services/facilityService";
+import { getAllFacilities } from "../services/facilityService";
 import { getAllCategories } from "../services/categoryService";
 
 export default function HomePage() {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<CategoryProps[]>([]);
   const [products, setProducts] = useState<ProductCardProps[]>([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function HomePage() {
       }
     };
     fetchCategories();
-  });
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {

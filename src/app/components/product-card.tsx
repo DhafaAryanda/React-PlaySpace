@@ -4,11 +4,16 @@ import React from "react";
 export interface ProductCardProps {
   id: string;
   name: string;
-  category: string;
   price_per_hour: string;
   owner_avatar: string;
   thumbnail: string;
+  category: Category;
 }
+
+type Category = {
+  id: string;
+  name: string;
+};
 
 export default function ProductCard({
   id,
@@ -42,7 +47,7 @@ export default function ProductCard({
             {name}
           </Link>
           <p className="bg-gray-200 dark:bg-[#2A2A2A] font-semibold text-xs text-gray-600 dark:text-playspace-grey rounded-[4px] p-[4px_6px] w-fit">
-            {category}
+            {category.name}
           </p>
         </div>
         <div className="flex items-center gap-[6px]">

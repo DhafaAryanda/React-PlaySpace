@@ -1,20 +1,19 @@
 import React from "react";
-import { Product } from "../page";
+
 import Link from "next/link";
 
 interface BenefitsProps {
-  product: Product;
-  params: { id: string };
+  id: string;
+  price: string;
 }
 
-export default function Benefits({ product, params }: BenefitsProps) {
-  const { id } = params;
+export default function Benefits({ id, price }: BenefitsProps) {
   return (
     <div className="p-[2px] bg-img-purple-to-orange rounded-[20px] flex w-full h-fit">
       <div className="w-full p-[28px] bg-[#181818] rounded-[20px] flex flex-col gap-[26px]">
         <div className="flex flex-col gap-3">
           <p className="font-semibold text-4xl bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-            Rp {product.price.toLocaleString("id-ID")}
+            Rp {price.toLocaleString()}
           </p>
           <div className="flex flex-col gap-[10px]">
             <div className="flex items-center gap-[10px]">
@@ -56,7 +55,7 @@ export default function Benefits({ product, params }: BenefitsProps) {
           </div>
         </div>
         <Link
-          href={`/product/${id}/checkout`}
+          href={`/product/${id}checkout`}
           className="bg-[#2D68F8] text-center font-semibold p-[12px_20px] rounded-full hover:bg-[#083297] active:bg-[#062162] transition-all duration-300"
         >
           Check out

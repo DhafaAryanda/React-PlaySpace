@@ -2,75 +2,73 @@
 "use client"; // Pastikan ini ada di bagian atas untuk menjadikan komponen client-side
 
 import Navbar from "@/app/components/navbar";
-import Image from "next/image";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Benefits from "./components/benefits";
 import ProfileCard from "./components/profile-card";
+import {
+  getAllFacilities,
+  getFacilityById,
+} from "@/app/services/facilityService";
 import ProductCard from "@/app/components/product-card";
 
-export interface Product {
+export interface ProductProps {
   id: string;
-  title: string;
-  category: string;
-  price: number;
-  logo: string;
-  thumbnail: string;
+  name: string;
+  category_id: string;
   description: string;
+  price_per_hour: string;
+  thumbnail: string;
+  owner: Owner;
+  category: Category;
 }
 
-const products: Product[] = [
-  {
-    id: "1",
-    title: "Lapangan Tenis USK",
-    category: "Tenis",
-    price: 120000,
-    logo: "/assets/images/logos/framer.png",
-    thumbnail: "/assets/images/fasilitas/lap 1 tenis-1.jpg",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
-  },
-  {
-    id: "2",
-    title: "Lapangan Badminton USK",
-    category: "Badminton",
-    price: 70000,
-    logo: "/assets/images/logos/framer.png",
-    thumbnail: "/assets/images/fasilitas/lap 1 badminton gelanggang-1.jpg",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
-  },
-  {
-    id: "3",
-    title: "Lapangan Basket USK",
-    category: "Basket",
-    price: 120000,
-    logo: "/assets/images/logos/framer.png",
-    thumbnail: "/assets/images/fasilitas/lap basket indoor gelanggang-2.jpg",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
-  },
-  {
-    id: "4",
-    title: "Stadion Mini USK",
-    category: "Stadion Mini",
-    price: 120000,
-    logo: "/assets/images/logos/framer.png",
-    thumbnail: "/assets/images/fasilitas/stadion mini-1.jpg",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
-  },
-];
+type Owner = {
+  id: string;
+  name: string;
+  avatar: string;
+};
+
+type Category = {
+  id: string;
+  name: string;
+};
 
 export default function ProductDetailPage() {
   const params = useParams();
-  const { id } = params; // Mengambil `id` dari URL params
+  const { id } = params;
 
-  const product = products.find((product) => product.id === id);
+  const [products, setProducts] = useState<ProductProps>();
+  const [relatedProducts, setRelatedProducts] = useState<ProductProps[]>();
 
-  if (!product) {
-    return <p>Product not found</p>;
-  }
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        if (typeof id === "string") {
+          const response = await getFacilityById(id);
+          setProducts(response.data);
+          console.log("🚀 ~ fetchProduct ~ response.data:", response.data);
+        } else {
+          console.error("Invalid id type:", id);
+        }
+      } catch (error) {
+        console.log("🚀 ~ fetchProduct ~ error:", error);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchRelatedProducts = async () => {
+      try {
+        const response = await getAllFacilities();
+        setRelatedProducts(response.data);
+      } catch (error) {
+        console.log("🚀 ~ fetchRelatedProducts ~ error:", error);
+      }
+    };
+    fetchRelatedProducts();
+  }, []);
 
   return (
     <>
@@ -79,14 +77,14 @@ export default function ProductDetailPage() {
         <div className="container max-w-[1130px] mx-auto items-start flex flex-col  justify-center z-10">
           <div className="flex flex-col gap-4 mt-7 z-10">
             <p className="bg-[#2A2A2A] font-semibold text-playspace-grey rounded-[4px] p-[8px_16px] w-fit">
-              {product.category}
+              {products?.category.name || "Loadin..."}
             </p>
-            <h1 className="font-semibold text-[55px]">{product.title}</h1>
+            <h1 className="font-semibold text-[55px]">{products?.name}</h1>
           </div>
         </div>
         <div className="background-image w-full h-full absolute top-0 overflow-hidden z-0">
           <img
-            src={product.thumbnail}
+            src={products?.thumbnail || "Loadin..."}
             className="w-full h-full object-cover"
             alt="hero image"
           />
@@ -102,7 +100,7 @@ export default function ProductDetailPage() {
         <div className="flex flex-col gap-8">
           <div className="w-[1130px] h-[700px] flex shrink-0 rounded-[20px] overflow-hidden">
             <img
-              src={product.thumbnail}
+              src={products?.thumbnail}
               className="w-full h-full object-cover"
               alt="hero image"
             />
@@ -112,9 +110,9 @@ export default function ProductDetailPage() {
               <div className="flex flex-col gap-4">
                 <p className="font-semibold text-xl">Overview</p>
                 <p className="text-playspace-grey leading-[30px]">
-                  {product.description}
+                  {products?.description}
                 </p>
-                <div className="flex items-center gap-[10px] mt-1">
+                {/* <div className="flex items-center gap-[10px] mt-1">
                   <a
                     href=""
                     className="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]"
@@ -185,9 +183,9 @@ export default function ProductDetailPage() {
                       alt="logo"
                     />
                   </a>
-                </div>
+                </div> */}
               </div>
-              <div className="flex flex-row flex-wrap gap-4 items-center">
+              {/* <div className="flex flex-row flex-wrap gap-4 items-center">
                 <a
                   href=""
                   className="tags p-[4px_8px] border border-[#414141] rounded-[4px] h-fit w-fit text-xs text-playspace-light-grey hover:bg-[#2A2A2A] transition-all duration-300"
@@ -260,11 +258,18 @@ export default function ProductDetailPage() {
                 >
                   wallet
                 </a>
-              </div>
+              </div> */}
             </div>
             <div className="flex flex-col w-[366px] gap-[30px] flex-nowrap overflow-y-visible">
-              <Benefits params={{ id: product.id }} product={product} />
-              <ProfileCard />
+              <Benefits
+                id={products?.id || ""}
+                price={products?.price_per_hour || ""}
+              />
+              <ProfileCard
+                name={products?.owner.name || ""}
+                avatar={products?.owner.avatar || ""}
+                id={products?.owner.id || ""}
+              />
             </div>
           </div>
         </div>
@@ -276,15 +281,15 @@ export default function ProductDetailPage() {
       >
         <h2 className="font-semibold text-[32px]">More Product</h2>
         <div className="grid grid-cols-4 gap-[22px]">
-          {products.map((products, index) => (
+          {relatedProducts?.map((product) => (
             <ProductCard
-              key={index}
-              id={products.id}
-              title={products.title}
-              category={products.category}
-              price={products.price}
-              logo={products.logo}
-              thumbnail={products.thumbnail}
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              category={product.category}
+              price_per_hour={product.price_per_hour}
+              owner_avatar={product.owner.avatar}
+              thumbnail={product.thumbnail}
             />
           ))}
         </div>
