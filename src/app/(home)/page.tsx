@@ -1,84 +1,42 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import Navbar from "../components/navbar";
-import CategoryCard from "../components/category-card";
-import ProductCard from "../components/product-card";
-
-const categories = [
-  {
-    title: "All Products",
-    description: "Everything in One Place",
-    icon: "assets/images/icons/badminton.svg",
-  },
-  {
-    title: "Sports",
-    description: "Gear and Equipment",
-    icon: "assets/images/icons/laptop.svg",
-  },
-  {
-    title: "Electronics",
-    description: "Latest Tech Gadgets",
-    icon: "assets/images/icons/book.svg",
-  },
-  {
-    title: "Fashion",
-    description: "Trendy Apparel",
-    icon: "assets/images/icons/hat.svg",
-  },
-  {
-    title: "Books",
-    description: "Knowledge & More",
-    icon: "assets/images/icons/pen.svg",
-  },
-];
-
-const products = [
-  {
-    id: "1",
-    title: "Lapangan Tenis USK",
-    category: "Tenis",
-    price: 120000,
-    logo: "assets/images/logos/framer.png",
-    thumbnail: "assets/images/fasilitas/lap 1 tenis-1.jpg",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
-  },
-  {
-    id: "2",
-    title: "Lapangan Badminton USK",
-    category: "Badminton",
-    price: 70000,
-    logo: "assets/images/logos/framer.png",
-    thumbnail: "assets/images/fasilitas/lap 1 badminton gelanggang-1.jpg",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
-  },
-  {
-    id: "3",
-    title: "Lapangan Basket USK",
-    category: "Basket",
-    price: 120000,
-    logo: "assets/images/logos/framer.png",
-    thumbnail: "assets/images/fasilitas/lap basket indoor gelanggang-2.jpg",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
-  },
-  {
-    id: "4",
-    title: "Stadion Mini USK",
-    category: "Stadion Mini",
-    price: 120000,
-    logo: "assets/images/logos/framer.png",
-    thumbnail: "assets/images/fasilitas/stadion mini-1.jpg",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Fugit ipsam non magnam quisquam rerum qui? Nesciunt eaquenesciunt itaque qui, velit unde asperiores aliquid explicabonihil, atque dolorem eveniet repellat temporibus iusto. Illotemporibus aliquid blanditiis, fugit ipsa culpa liberoreiciendis tempore deserunt eius, qui in cum, porroaccusantium?",
-  },
-];
+import CategoryCard, { Category } from "../components/category-card";
+import ProductCard, { ProductCardProps } from "../components/product-card";
+import { useEffect, useState } from "react";
+import { getAllFacilities, getCategories } from "../services/facilityService";
+import { getAllCategories } from "../services/categoryService";
 
 export default function HomePage() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<ProductCardProps[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getAllCategories();
+
+        setCategories(response.data);
+      } catch (error) {
+        console.log("🚀 ~ fetchCategories ~ error:", error);
+      }
+    };
+    fetchCategories();
+  });
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await getAllFacilities();
+
+        setProducts(response.data);
+      } catch (error) {
+        console.log("🚀 ~ fetchCategories ~ error:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <>
       <header className="w-full pt-[108px] pb-[56px] bg-[url('/assets/images/backgrounds/hero-image.jpg')] bg-cover bg-no-repeat bg-center relative z-0">
@@ -127,7 +85,7 @@ export default function HomePage() {
           {categories.map((category, index) => (
             <CategoryCard
               key={index}
-              title={category.title}
+              name={category.name}
               description={category.description}
               icon={category.icon}
             />
@@ -140,14 +98,14 @@ export default function HomePage() {
       >
         <h2 className="font-semibold text-[32px]">New Product</h2>
         <div className="grid grid-cols-4 gap-[22px]">
-          {products.map((products, index) => (
+          {products.map((products) => (
             <ProductCard
-              key={index}
+              key={products.id}
               id={products.id}
-              title={products.title}
+              name={products.name}
               category={products.category}
-              price={products.price}
-              logo={products.logo}
+              price_per_hour={products.price_per_hour}
+              owner_avatar={products.owner_avatar}
               thumbnail={products.thumbnail}
             />
           ))}

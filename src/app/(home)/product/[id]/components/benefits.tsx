@@ -4,9 +4,11 @@ import Link from "next/link";
 
 interface BenefitsProps {
   product: Product;
+  params: { id: string };
 }
 
-export default function Benefits({ product }: BenefitsProps) {
+export default function Benefits({ product, params }: BenefitsProps) {
+  const { id } = params;
   return (
     <div className="p-[2px] bg-img-purple-to-orange rounded-[20px] flex w-full h-fit">
       <div className="w-full p-[28px] bg-[#181818] rounded-[20px] flex flex-col gap-[26px]">
@@ -54,7 +56,7 @@ export default function Benefits({ product }: BenefitsProps) {
           </div>
         </div>
         <Link
-          href={"checkout"}
+          href={`/product/${id}/checkout`}
           className="bg-[#2D68F8] text-center font-semibold p-[12px_20px] rounded-full hover:bg-[#083297] active:bg-[#062162] transition-all duration-300"
         >
           Check out

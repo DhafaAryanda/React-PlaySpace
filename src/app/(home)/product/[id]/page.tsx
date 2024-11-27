@@ -263,7 +263,7 @@ export default function ProductDetailPage() {
               </div>
             </div>
             <div className="flex flex-col w-[366px] gap-[30px] flex-nowrap overflow-y-visible">
-              <Benefits product={product} />
+              <Benefits params={{ id: product.id }} product={product} />
               <ProfileCard />
             </div>
           </div>

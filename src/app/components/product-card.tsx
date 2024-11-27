@@ -1,21 +1,21 @@
 import Link from "next/link";
 import React from "react";
 
-interface ProductCardProps {
+export interface ProductCardProps {
   id: string;
-  title: string;
+  name: string;
   category: string;
-  price: number;
-  logo: string;
+  price_per_hour: string;
+  owner_avatar: string;
   thumbnail: string;
 }
 
 export default function ProductCard({
   id,
-  title,
+  name,
   category,
-  price,
-  logo,
+  price_per_hour,
+  owner_avatar,
   thumbnail,
 }: ProductCardProps) {
   return (
@@ -30,7 +30,7 @@ export default function ProductCard({
           alt="thumbnail"
         />
         <p className="backdrop-blur bg-white/80  dark:bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10 shadow-sm dark:shadow-none">
-          {price}
+          Rp. {price_per_hour.toLocaleString()}
         </p>
       </Link>
       <div className="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
@@ -39,7 +39,7 @@ export default function ProductCard({
             href={`/product/${id}`}
             className="font-semibold line-clamp-2 hover:line-clamp-none"
           >
-            {title}
+            {name}
           </Link>
           <p className="bg-gray-200 dark:bg-[#2A2A2A] font-semibold text-xs text-gray-600 dark:text-playspace-grey rounded-[4px] p-[4px_6px] w-fit">
             {category}
@@ -47,7 +47,11 @@ export default function ProductCard({
         </div>
         <div className="flex items-center gap-[6px]">
           <div className="w-6 h-6 flex shrink-0 items-center justify-center rounded-full overflow-hidden">
-            <img src={logo} className="w-full h-full object-cover" alt="logo" />
+            <img
+              src={owner_avatar}
+              className="w-full h-full object-cover"
+              alt="logo"
+            />
           </div>
           <a
             href=""
