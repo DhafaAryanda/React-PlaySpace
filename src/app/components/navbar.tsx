@@ -1,4 +1,3 @@
-import { ModeToggle } from "@/components/mode-toggle";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

@@ -40,6 +40,7 @@ export default function ProductDetailPage() {
 
   const [products, setProducts] = useState<ProductProps>();
   const [relatedProducts, setRelatedProducts] = useState<ProductProps[]>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -53,6 +54,8 @@ export default function ProductDetailPage() {
         }
       } catch (error) {
         console.log("🚀 ~ fetchProduct ~ error:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProduct();
@@ -65,6 +68,8 @@ export default function ProductDetailPage() {
         setRelatedProducts(response.data);
       } catch (error) {
         console.log("🚀 ~ fetchRelatedProducts ~ error:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchRelatedProducts();
@@ -99,11 +104,16 @@ export default function ProductDetailPage() {
       >
         <div className="flex flex-col gap-8">
           <div className="w-[1130px] h-[700px] flex shrink-0 rounded-[20px] overflow-hidden">
-            <img
-              src={products?.thumbnail}
-              className="w-full h-full object-cover"
-              alt="hero image"
-            />
+            {isLoading ? (
+              "Loading..."
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={products!.thumbnail}
+                className="w-full h-full object-cover"
+                alt="hero image"
+              />
+            )}
           </div>
           <div className="flex gap-8 relative -mt-[93px]">
             <div className="flex flex-col p-[30px] gap-5 bg-[#181818] rounded-[20px] w-[700px] shrink-0 mt-[90px] h-fit">
@@ -112,78 +122,6 @@ export default function ProductDetailPage() {
                 <p className="text-playspace-grey leading-[30px]">
                   {products?.description}
                 </p>
-                {/* <div className="flex items-center gap-[10px] mt-1">
-                  <a
-                    href=""
-                    className="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]"
-                  >
-                    <img
-                      src="/assets/images/logos/Python.svg"
-                      className="p-[5px]"
-                      alt="logo"
-                    />
-                  </a>
-                  <a
-                    href=""
-                    className="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]"
-                  >
-                    <img
-                      src="/assets/images/logos/figma-logo.svg"
-                      className="p-[5px]"
-                      alt="logo"
-                    />
-                  </a>
-                  <a
-                    href=""
-                    className="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]"
-                  >
-                    <img
-                      src="/assets/images/logos/blender.svg"
-                      className="p-[5px]"
-                      alt="logo"
-                    />
-                  </a>
-                  <a
-                    href=""
-                    className="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]"
-                  >
-                    <img
-                      src="/assets/images/logos/Excel.svg"
-                      className="p-[5px]"
-                      alt="logo"
-                    />
-                  </a>
-                  <a
-                    href=""
-                    className="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]"
-                  >
-                    <img
-                      src="/assets/images/logos/Laravel.svg"
-                      className="p-[5px]"
-                      alt="logo"
-                    />
-                  </a>
-                  <a
-                    href=""
-                    className="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]"
-                  >
-                    <img
-                      src="/assets/images/logos/Kotlin.svg"
-                      className="p-[5px]"
-                      alt="logo"
-                    />
-                  </a>
-                  <a
-                    href=""
-                    className="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]"
-                  >
-                    <img
-                      src="/assets/images/logos/flutter.svg"
-                      className="p-[5px]"
-                      alt="logo"
-                    />
-                  </a>
-                </div> */}
               </div>
               {/* <div className="flex flex-row flex-wrap gap-4 items-center">
                 <a
@@ -261,15 +199,24 @@ export default function ProductDetailPage() {
               </div> */}
             </div>
             <div className="flex flex-col w-[366px] gap-[30px] flex-nowrap overflow-y-visible">
-              <Benefits
-                id={products?.id || ""}
-                price={products?.price_per_hour || ""}
-              />
-              <ProfileCard
-                name={products?.owner.name || ""}
-                avatar={products?.owner.avatar || ""}
-                id={products?.owner.id || ""}
-              />
+              {isLoading ? (
+                "Loading..."
+              ) : (
+                <>
+                  <Benefits
+                    key={products?.id}
+                    name="Benefits"
+                    id={products!.id}
+                    price_per_hour={products!.price_per_hour}
+                  />
+
+                  <ProfileCard
+                    name={products!.owner.name}
+                    avatar={products!.owner.avatar}
+                    id={products!.owner.id}
+                  />
+                </>
+              )}
             </div>
           </div>
         </div>
