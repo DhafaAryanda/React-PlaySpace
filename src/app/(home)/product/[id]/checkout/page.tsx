@@ -1,7 +1,36 @@
-import React from "react";
-import Navbar from "../../../../components/navbar";
+"use client";
 
-export default function CheckoutPage() {
+import React, { useEffect, useState } from "react";
+import Navbar from "../../../../components/navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { getFacilityById } from "@/app/services/facilityService";
+import { setProduct } from "@/app/slices/productSlice";
+
+export default function CheckoutPage({ params }: { params: { id: string } }) {
+  const dispatch = useDispatch();
+  const product = useSelector((state: RootState) => state.product.product);
+  console.log("🚀 ~ CheckoutPage ~ product:", product);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (!product) {
+      const fetchProduct = async () => {
+        try {
+          const response = await getFacilityById(params.id);
+          dispatch(setProduct(response.data));
+        } catch (error) {
+          console.log("🚀 ~ fetchProduct ~ error:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchProduct();
+    } else {
+      setIsLoading(false);
+    }
+  }, [params.id, product, dispatch]);
+
   return (
     <>
       <Navbar />
@@ -15,7 +44,7 @@ export default function CheckoutPage() {
             <div className="product-detail flex flex-col gap-3">
               <div className="thumbnail w-[412px] h-[255px] flex shrink-0 rounded-[20px] overflow-hidden">
                 <img
-                  src="/assets/images/backgrounds/hero.png"
+                  src={isLoading ? "Loading..." : product?.thumbnail}
                   className="w-full h-full object-cover"
                   alt="thumbnail"
                 />
@@ -23,24 +52,28 @@ export default function CheckoutPage() {
               <div className="product-title flex flex-col gap-[30px]">
                 <div className="flex flex-col gap-3">
                   <p className="font-semibold">
-                    Huis Elite: The Complete Smart Home App UI Kit for Modern
-                    Living
+                    {isLoading ? "Loading..." : product?.name}
                   </p>
                   <p className="bg-[#2A2A2A] font-semibold text-xs text-playspace-grey rounded-[4px] p-[4px_6px] w-fit">
-                    Template
+                    {isLoading ? "Loading..." : product?.category.name}
                   </p>
                 </div>
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full flex shrink-0 overflow-hidden">
-                      <img src="/assets/images/icons/ydntkwia.svg" alt="logo" />
+                      <img
+                        src={isLoading ? "Loading..." : product?.owner.avatar}
+                        alt="logo"
+                      />
                     </div>
                     <p className="font-semibold text-playspace-grey">
-                      YDNTKWIA
+                      {isLoading ? "Loading..." : product?.owner.name}
                     </p>
                   </div>
                   <p className="font-semibold text-4xl bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-                    Rp 6,288,000
+                    {isLoading
+                      ? "Loading..."
+                      : `Rp ${product?.price_per_hour.toLocaleString()}`}
                   </p>
                 </div>
               </div>

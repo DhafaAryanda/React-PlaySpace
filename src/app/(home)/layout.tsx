@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import "../globals.css";
+import ClientWrapper from "../components/client-wrapper";
 import Navbar from "../components/navbar";
-import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-});
+// const poppins = Poppins({
+//   weight: ["300", "400", "500", "600", "700"],
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "PlaySpace - Field Booking Made Easy",
@@ -28,15 +28,10 @@ export default function RootLayout({
       <body
         className={`${inter.className}  bg-white dark:bg-playspace-black font-poppins text-black dark:text-white`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ClientWrapper>
           <Navbar />
           {children}
-        </ThemeProvider>
+        </ClientWrapper>
       </body>
     </html>
   );
