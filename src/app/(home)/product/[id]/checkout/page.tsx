@@ -14,7 +14,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!product) {
+    if (!product || product.id !== params.id) {
       const fetchProduct = async () => {
         try {
           const response = await getFacilityById(params.id);

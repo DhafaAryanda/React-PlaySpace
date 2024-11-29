@@ -26,7 +26,7 @@ export default function ProductDetailPage({
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!product) {
+    if (!product || product.id !== params.id) {
       const fetchData = async () => {
         try {
           const responseProduct = await getFacilityById(params.id);
