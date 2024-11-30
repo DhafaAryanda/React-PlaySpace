@@ -4,6 +4,7 @@ import "../globals.css";
 import Navbar from "../components/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import ClientWrapper from "../components/client-wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -29,15 +30,10 @@ export default function RootLayout({
       <body
         className={`${inter.className}  bg-white dark:bg-playspace-black font-poppins text-black dark:text-white`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ClientWrapper>
           {children}
           <Toaster />
-        </ThemeProvider>
+        </ClientWrapper>
       </body>
     </html>
   );

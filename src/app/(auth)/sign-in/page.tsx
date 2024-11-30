@@ -1,5 +1,4 @@
 import React from "react";
-import FormSignIn from "./components/form-signin";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -9,15 +8,6 @@ import { buttonVariants } from "@/components/ui/button";
 export default function SignInPage() {
   return (
     <>
-      {/* <div className="form-section container max-w-[1130px] w-full mx-auto flex flex-col gap-[30px] mt-[53px]">
-        <div className="title flex flex-col gap-1">
-          <h1 className="font-bold text-[32px] leading-[48px]">Sign Up</h1>
-          <p className="font-medium text-lg leading-[27px]">
-            Enjoy new experience of flight
-          </p>
-        </div>
-        <FormSignUp />
-      </div> */}
       <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
           href="/sign-up"
@@ -74,7 +64,7 @@ export default function SignInPage() {
             </div>
             <SignInForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/sign-up" className="text-primary">
                 Sign Up
               </Link>

@@ -1,8 +1,33 @@
+"use client";
+
+import { RootState } from "@/store";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../services/authService";
+import { setToken, setUser } from "../slices/userSlice";
 
 export default function Navbar() {
+  const user = useSelector((state: RootState) => state.user.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    try {
+      if (!user) {
+        const token = localStorage.getItem("token");
+        if (token) {
+          dispatch(setToken(token));
+          getUser().then((response) => {
+            dispatch(setUser(response.data));
+          });
+        }
+      }
+    } catch (error: any) {
+      console.log("🚀 ~ onSubmit ~ error:", error);
+    }
+  });
+
   return (
     <nav className="w-full fixed top-0 bg-[#e6e6e610] dark:bg-[#00000010] backdrop-blur-lg z-20 shadow-sm">
       <div className="container max-w-[1130px] mx-auto flex items-center justify-between h-[74px]">
@@ -144,18 +169,24 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="flex gap-6 items-center">
-          <Link
-            href="/sign-in"
-            className="text-gray-800 dark:text-playspace-grey hover:text-gray-900  dark:hover:text-playspace-light-grey transition-all duration-300"
-          >
-            Log in
-          </Link>
-          <Link
-            href="/sign-up"
-            className="p-[8px_16px] w-fit h-fit rounded-[12px] text-gray-800 dark:text-playspace-grey border border-gray-300 dark:border-playspace-dark-grey hover:bg-gray-100 dark:hover:bg-[#2A2A2A] hover:text-gray-900 dark:hover:text-white transition-all duration-300"
-          >
-            Sign up
-          </Link>
+          {user ? (
+            "welcome, " + user.name
+          ) : (
+            <>
+              <Link
+                href="/sign-in"
+                className="text-gray-800 dark:text-playspace-grey hover:text-gray-900  dark:hover:text-playspace-light-grey transition-all duration-300"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/sign-up"
+                className="p-[8px_16px] w-fit h-fit rounded-[12px] text-gray-800 dark:text-playspace-grey border border-gray-300 dark:border-playspace-dark-grey hover:bg-gray-100 dark:hover:bg-[#2A2A2A] hover:text-gray-900 dark:hover:text-white transition-all duration-300"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
