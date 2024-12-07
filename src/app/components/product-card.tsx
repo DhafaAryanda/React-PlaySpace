@@ -4,8 +4,8 @@ import React from "react";
 export interface ProductCardProps {
   id: string;
   name: string;
-  price_per_hour: string;
-  owner_avatar: string;
+  pricePerHour: string;
+  ownerAvatar: string;
   thumbnail: string;
   category: Category;
 }
@@ -19,8 +19,8 @@ export default function ProductCard({
   id,
   name,
   category,
-  price_per_hour,
-  owner_avatar,
+  pricePerHour,
+  ownerAvatar,
   thumbnail,
 }: ProductCardProps) {
   return (
@@ -35,7 +35,7 @@ export default function ProductCard({
           alt="thumbnail"
         />
         <p className="backdrop-blur bg-white/80  dark:bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10 shadow-sm dark:shadow-none">
-          Rp. {price_per_hour.toLocaleString()}
+          Rp. {pricePerHour.toLocaleString()}
         </p>
       </Link>
       <div className="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
@@ -53,7 +53,7 @@ export default function ProductCard({
         <div className="flex items-center gap-[6px]">
           <div className="w-6 h-6 flex shrink-0 items-center justify-center rounded-full overflow-hidden">
             <img
-              src={owner_avatar}
+              src={ownerAvatar}
               className="w-full h-full object-cover"
               alt="logo"
             />

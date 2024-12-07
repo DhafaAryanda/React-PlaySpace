@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getAllFacilities } from "../services/facilityService";
 import { getAllCategories } from "../services/categoryService";
 import Footer from "../components/footer";
+import { getUser } from "../services/authService";
 
 export default function HomePage() {
   const [categories, setCategories] = useState<CategoryProps[]>([]);
@@ -15,6 +16,7 @@ export default function HomePage() {
     const fetchCategories = async () => {
       try {
         const response = await getAllCategories();
+        await getUser();
 
         setCategories(response.data);
       } catch (error) {
@@ -104,8 +106,8 @@ export default function HomePage() {
               id={products.id}
               name={products.name}
               category={products.category}
-              price_per_hour={products.price_per_hour}
-              owner_avatar={products.owner_avatar}
+              pricePerHour={products.pricePerHour}
+              ownerAvatar={products.ownerAvatar}
               thumbnail={products.thumbnail}
             />
           ))}

@@ -5,7 +5,7 @@ interface Product {
   name: string;
   category_id: string;
   description: string;
-  price_per_hour: string;
+  pricePerHour: string;
   thumbnail: string;
   owner: Owner;
   category: Category;

@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { getFacilityById } from "@/app/services/facilityService";
 import { setProduct } from "@/app/slices/productSlice";
+import { getUser } from "@/app/services/authService";
 
 export default function CheckoutPage({ params }: { params: { id: string } }) {
   const dispatch = useDispatch();
   const product = useSelector((state: RootState) => state.product.product);
   console.log("🚀 ~ CheckoutPage ~ product:", product);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
+  getUser();
   useEffect(() => {
     if (!product || product.id !== params.id) {
       const fetchProduct = async () => {
@@ -73,7 +74,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                   <p className="font-semibold text-4xl bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
                     {isLoading
                       ? "Loading..."
-                      : `Rp ${product?.price_per_hour.toLocaleString()}`}
+                      : `Rp ${product?.pricePerHour.toLocaleString()}`}
                   </p>
                 </div>
               </div>

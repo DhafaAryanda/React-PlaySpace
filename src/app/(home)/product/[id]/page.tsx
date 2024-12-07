@@ -174,7 +174,7 @@ export default function ProductDetailPage({
                   key={product!.id}
                   name="Benefits"
                   id={product!.id}
-                  price_per_hour={product!.price_per_hour}
+                  pricePerHour={product!.pricePerHour}
                 />
               )}
 
@@ -206,8 +206,8 @@ export default function ProductDetailPage({
                   id={product.id}
                   name={product.name}
                   category={product.category}
-                  price_per_hour={product.price_per_hour}
-                  owner_avatar={product.owner.avatar}
+                  pricePerHour={product.pricePerHour}
+                  ownerAvatar={product.owner.avatar}
                   thumbnail={product.thumbnail}
                 />
               ))}

@@ -6,10 +6,10 @@ import { getBenefits } from "@/app/services/benefitService";
 interface BenefitsProps {
   name: string;
   id: string;
-  price_per_hour: string;
+  pricePerHour: string;
 }
 
-export default function Benefits({ id, price_per_hour }: BenefitsProps) {
+export default function Benefits({ id, pricePerHour }: BenefitsProps) {
   const [benefits, setBenefits] = useState<BenefitsProps[]>([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Benefits({ id, price_per_hour }: BenefitsProps) {
       <div className="w-full p-[28px] bg-[#181818] rounded-[20px] flex flex-col gap-[26px]">
         <div className="flex flex-col gap-3">
           <p className="font-semibold text-4xl bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-            Rp {price_per_hour.toLocaleString()}
+            Rp {pricePerHour.toLocaleString()}
           </p>
           <div className="flex flex-col gap-[10px]">
             {(benefits.length > 0 &&

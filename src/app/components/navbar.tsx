@@ -1,32 +1,30 @@
 "use client";
 
-import { RootState } from "@/store";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../services/authService";
-import { setToken, setUser } from "../slices/userSlice";
+import React, { useEffect, useState } from "react";
+import { getUser, logout } from "../services/authService";
 
 export default function Navbar() {
-  const user = useSelector((state: RootState) => state.user.user);
-  const dispatch = useDispatch();
+  const [user, setUser] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    try {
-      if (!user) {
-        const token = localStorage.getItem("token");
-        if (token) {
-          dispatch(setToken(token));
-          getUser().then((response) => {
-            dispatch(setUser(response.data));
-          });
-        }
-      }
-    } catch (error: any) {
-      console.log("🚀 ~ onSubmit ~ error:", error);
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
-  });
+    setIsLoading(false);
+  }, []);
 
   return (
     <nav className="w-full fixed top-0 bg-[#e6e6e610] dark:bg-[#00000010] backdrop-blur-lg z-20 shadow-sm">
@@ -169,8 +167,34 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="flex gap-6 items-center">
-          {user ? (
-            "welcome, " + user.name
+          {isLoading ? (
+            <Avatar>
+              <AvatarFallback className="bg-gray-400 animate-pulse"></AvatarFallback>
+            </Avatar>
+          ) : user ? (
+            <>
+              <p className="text-sm">Halo, {user.name}</p>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="focus:outline-none">
+                  <Avatar>
+                    <AvatarImage src={user.avatar} />
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link href="/profile">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/my-booking">Booking</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="text-red-500" onClick={logout}>
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </>
           ) : (
             <>
               <Link

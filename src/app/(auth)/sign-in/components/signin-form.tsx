@@ -7,26 +7,24 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
-import { getUser, signIn, SignInData } from "@/app/services/authService";
+import { login } from "@/app/services/authService";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "../lib/validation";
-import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { useDispatch } from "react-redux";
-import { setToken, setUser } from "@/app/slices/userSlice";
+import { useRouter } from "next/navigation";
 
-interface FormData extends SignInData {}
+interface FormData {
+  email: string;
+  password: string;
+}
 
 export function SignInForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const router = useRouter();
-  const { toast } = useToast();
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -34,33 +32,36 @@ export function SignInForm({
   } = useForm<FormData>({
     resolver: zodResolver(signInSchema),
   });
+  const router = useRouter();
+
+  const { toast } = useToast();
 
   const onSubmit = async (formData: FormData) => {
     setIsLoading(true);
 
     try {
-      const result = await signIn(formData);
-      localStorage.setItem("token", result.data.token);
+      const { email, password } = formData;
+      await login(email, password);
+      router.push("/");
+      console.log(localStorage.getItem("token"));
+      console.log(localStorage.getItem("user"));
+
       toast({
         variant: "default",
         title: "Sign In Successful",
         description: "You have successfully signed in.",
         action: <ToastAction altText="Close">Close</ToastAction>,
       });
-      const userData = await getUser();
-      dispatch(setUser(userData.data));
-      dispatch(setToken(localStorage.getItem("token") || ""));
-      setTimeout(() => {
-        router.push("/");
-      }, 2000);
-    } catch (error: any) {
+    } catch (error) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: error?.message || "There was a problem, please try again.",
+        description: "There was a problem, please try again.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
-      console.log("🚀 ~ onSubmit ~ error:", error);
+      if (error) {
+        console.error("🚀 ~ onSubmit ~ error:", error);
+      }
     } finally {
       setIsLoading(false);
     }

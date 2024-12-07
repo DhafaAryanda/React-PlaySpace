@@ -1,10 +1,17 @@
+"use client";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { SignUpForm } from "./components/signup-form";
+import { useEffect } from "react";
+import { logout } from "@/app/services/authService";
 
 export default function SignUpPage() {
+  useEffect(() => {
+    logout();
+  }, []);
+
   return (
     <>
       <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
